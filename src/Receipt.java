@@ -11,22 +11,20 @@ public class Receipt {
     private Cashier cashier;
     private LocalDateTime dateTime;
     private List<Product> products;
-    private double totalPrice;  // Make sure totalPrice is declared
+    private double totalPrice;
 
-    // Constructor that initializes totalPrice
     public Receipt(Cashier cashier, List<Product> products, double totalPrice) {
         this.receiptNumber = ++receiptCounter;
         this.cashier = cashier;
         this.dateTime = LocalDateTime.now();
         this.products = products;
-        this.totalPrice = totalPrice;  // Initialize totalPrice
+        this.totalPrice = totalPrice;
     }
 
     public int getReceiptNumber() {
         return receiptNumber;
     }
 
-    // Getter method for totalPrice
     public double getTotalPrice() {
         return totalPrice;
     }

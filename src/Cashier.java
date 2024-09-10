@@ -2,7 +2,7 @@ public class Cashier {
     private int id;
     private String name;
     private double salary;
-    private int registerId;  // Added to track the register the cashier is working at
+    private int registerId;
 
 
     public Cashier(int id, String name, double salary, int registerId) {

@@ -9,7 +9,7 @@ public class CashierTest {
 
     @Test
     public void testCashierCreation() {
-        Cashier john = new Cashier(1, "John", 1500, 1);  // John works at register 1
+        Cashier john = new Cashier(1, "John", 1500, 1);
         assertEquals(1, john.getRegisterId());
         assertEquals("John", john.getName());
     }
@@ -28,7 +28,7 @@ public class CashierTest {
         Order order = new Order(Arrays.asList(apple));
 
         Receipt receipt = john.processSale(order);
-        assertNotNull(receipt);  // Ensure a receipt is generated
-        assertEquals(9, apple.getQuantity());  // Ensure the product quantity is reduced
+        assertNotNull(receipt);
+        assertEquals(9, apple.getQuantity());
     }
 }

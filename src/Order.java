@@ -13,8 +13,8 @@ public class Order {
             if (product.getQuantity() <= 0) {
                 throw new NotEnoughStockException("Not enough stock for product: " + product.getName());
             }
-            totalPrice += product.calculateSellingPrice(20, 5, 10); // example of markup and discount
-            product.reduceQuantity(1); // Reduce by the amount sold
+            totalPrice += product.calculateSellingPrice(20, 5, 10);
+            product.reduceQuantity(1);
         }
         return new Receipt(cashier, products, totalPrice);
     }
