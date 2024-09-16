@@ -1,9 +1,5 @@
 import java.time.LocalDateTime;
 import java.util.List;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 public class Receipt {
     private static int receiptCounter = 0;
@@ -21,40 +17,34 @@ public class Receipt {
         this.totalPrice = totalPrice;
     }
 
-    public int getReceiptNumber() {
-        return receiptNumber;
+    public Cashier getCashier() {
+        return cashier;
     }
 
     public double getTotalPrice() {
         return totalPrice;
     }
 
-    // Method to generate and save the receipt to a file
-    public void generateReceipt() throws IOException {
-        String fileName = "receipt_" + receiptNumber + ".txt";
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("Receipt Number: " + receiptNumber + "\n");
-            writer.write("Cashier: " + cashier.getName() + "\n");
-            writer.write("Date: " + dateTime + "\n");
-            writer.write("Products: \n");
-            for (Product product : products) {
-                writer.write(" - " + product.getName() + "\n");
-            }
-            writer.write("Total Price: " + totalPrice + "\n");
-        }
+    public int getReceiptNumber() {
+        return receiptNumber;
     }
-    public static String readReceiptFromFile(int receiptNumber) throws IOException {
-        String fileName = "receipt_" + receiptNumber + ".txt";
-        StringBuilder content = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
-            }
+
+    public void printReceipt() {
+        System.out.println("Receipt Number: " + receiptNumber);
+        System.out.println("Cashier: " + cashier.getName());
+        System.out.println("Date: " + dateTime);
+        System.out.println("Products: ");
+        for (Product product : products) {
+            System.out.println(" - " + product.getName() + ", Quantity: 1, Price: " + product.calculateSellingPrice(20, 5, 10));
         }
-        return content.toString();
+        System.out.println("Total Price: " + totalPrice);
     }
+
     public static int getTotalReceiptsIssued() {
         return receiptCounter;
+    }
+    //reset receipt counter (to be used in tests)
+    public static void resetReceiptCounter() {
+        receiptCounter = 0;
     }
 }

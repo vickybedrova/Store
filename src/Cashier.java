@@ -4,7 +4,6 @@ public class Cashier {
     private double salary;
     private int registerId;
 
-
     public Cashier(int id, String name, double salary, int registerId) {
         this.id = id;
         this.name = name;

@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class Store {
     private List<Product> products = new ArrayList<>();
@@ -22,17 +19,16 @@ public class Store {
     public void sellProduct(Order order, Cashier cashier) throws NotEnoughStockException {
         Receipt receipt = cashier.processSale(order);
         receipts.add(receipt);
-        totalRevenue += receipt.getTotalPrice();  // Use the getter method here
+        totalRevenue += receipt.getTotalPrice();
     }
-
 
     public double calculateCosts() {
         double costs = 0;
         for (Product product : products) {
-            costs += product.getQuantity() * product.getDeliveryPrice();  // Use getter here
+            costs += product.getQuantity() * product.getDeliveryPrice();
         }
         for (Cashier cashier : cashiers) {
-            costs += cashier.getSalary();  // Use getter here
+            costs += cashier.getSalary();
         }
         totalCosts = costs;
         return costs;
@@ -40,17 +36,5 @@ public class Store {
 
     public double calculateProfit() {
         return totalRevenue - totalCosts;
-    }
-
-    public void readReceiptFromFile(int receiptNumber) {
-        String fileName = "receipt_" + receiptNumber + ".txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading receipt file: " + fileName);
-        }
     }
 }
